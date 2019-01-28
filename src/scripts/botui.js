@@ -196,8 +196,11 @@
     };
 
     root.Vue.directive('botui-markdown', function (el, binding) {
-      if(binding.value == 'false') return; // v-botui-markdown="false"
+      // if(binding.value == 'false') return; // v-botui-markdown="false"
+      // el.innerHTML = _parseMarkDown(el.textContent);
+      if (binding.value == false || el.getAttribute('botui-markdown-done')) return; // v-botui-markdown="false"
       el.innerHTML = _parseMarkDown(el.textContent);
+      el.setAttribute('botui-markdown-done', true); // mark the node as already parsed
     });
 
     root.Vue.directive('botui-scroll', {
